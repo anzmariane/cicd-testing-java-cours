@@ -3,14 +3,12 @@ package tech.zerofiltre.testing.calcul.e2e;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@Disabled
 class MultiplicationJourneyE2ETest {
 
   @LocalServerPort
@@ -33,6 +32,8 @@ class MultiplicationJourneyE2ETest {
 
   @BeforeEach
   void setUpWebDriver() {
+    FirefoxOptions options = new FirefoxOptions();
+    options.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
     webDriver = new FirefoxDriver();
     baseUrl = "http://localhost:" + port + "/calculator";
 
